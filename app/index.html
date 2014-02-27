@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 	<html ng-app="plunker">
-
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
+		<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
 		<title>meals</title>
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
+	
+	<body>
+		<div class="main-wrapper" ng-class="{ open : $root.showMenu}" ng-controller="MainCtrl" d-resize-to-window d-edge-swipe right-swipe="$root.showMenu = true;" left-swipe="$root.showMenu = false;">
+			
+			<ng-include src="'partials/menu.html'"></ng-include>
 
-	<body ng-controller="MainCtrl" d-resize-to-window>
-		<div ui-view>
+			<div class="view">
+				<div class="close-menu-btn" ng-click="$root.showMenu = false"></div>
+				<div ui-view></div>
+			</div>
+
 		</div>
 	</body>
 

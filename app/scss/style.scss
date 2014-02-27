@@ -2,6 +2,7 @@
 @import "_vars.scss";
 @import "_mini_reset.scss";
 @import "_grid.scss";
+@import "_swiper.scss";
 
 // include fonts
 @import "_fontface.scss";
@@ -10,6 +11,8 @@
 // icons
 @import "_entypo.scss";
 
+
+@import "_menu.scss";
 
 // lists
 @import "_lists.scss";
@@ -27,13 +30,26 @@
 @import "_view-new.scss";
 
 /* Put your css in here */
-
-html{
-	background:$dark_background-color;
-}
 body{
 	background:$background-color;
 	color:white;
+	overflow:hidden;	
+	height:100%;
+}
+.main-wrapper{
+
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
 	position:relative;
 	overflow:hidden;
+
+	.view, .close-menu-btn{
+
+		position:absolute;
+		width:100%;
+		top:0;
+		bottom:0;
+		display:block;
+		overflow: hidden;
+	}
 }

@@ -1,0 +1,35 @@
+.menu{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 20%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2);
+	z-index: 100;
+
+	ul{
+		top: 50%;
+		position: absolute;
+		width: 100%;
+		margin-top: -97.5px;
+		li{
+			font-size: 30px;
+			padding: 18px 10px 11px 10px;
+			text-align: center;
+			&.ng-click-active, &.current{
+				background:white;
+				color:$flat-blue-4;
+			}
+		}
+		
+	}
+}
+
+.close-menu-btn{
+	z-index:-100;
+}
+.open {
+	.close-menu-btn{
+		z-index:100;
+	}
+}

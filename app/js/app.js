@@ -1,9 +1,20 @@
 var app = angular.module('plunker', ['ui.router','dContentDirectives','dSwiperDirectives','SafeApply', 'ngStorage', 'ngTouch','ngAnimate','swipe']);
 
-app.run(function($rootScope, Notification){
+app.run(function($rootScope, Notification, Statusbar){
 	console.log("application run");
 
     Notification.add();
+
+    Statusbar.hide();
+
+
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+        $rootScope.showMenu = false;
+        console.log(event);
+        console.log(toState);
+        $rootScope.currentState = toState.name;
+
+    })
 });
 
 

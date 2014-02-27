@@ -13,5 +13,6 @@
     <preference name="webviewbounce" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="KeyboardShrinksView" value="false" />
 
 </widget>

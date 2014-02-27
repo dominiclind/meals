@@ -7,18 +7,16 @@
 	</div>
 
 
-	<ul class="list">
-		<li ng-repeat="(key,value) in history" ng-if="!isToday(key)">
-			{{key}}
-		</li>
-	</ul>
 
-
-
-	<d-swiper swiper-id="'history-slider'">
+	<d-swiper class="no-swipe">
       
 		<d-swiper-slide ng-repeat="(key,value) in history">
-			{{value}}		
+			<ul class="list" ng-if="!isToday(key)">
+				<li ng-repeat="meal in value" >
+					{{meal.name}}
+				</li>
+			</ul>
+	
 		</d-swiper-slide>
 
     </d-swiper>
