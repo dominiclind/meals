@@ -1,0 +1,14 @@
+.button{
+	display:block;
+	padding:$padding*2;
+	text-decoration:none;
+	background:white;
+	color:$flat-blue-4;
+	text-align:center;
+	text-transform:uppercase;
+
+	&.ng-click-active{
+		background:$flat-gray-2;
+		color:white;
+	}
+}

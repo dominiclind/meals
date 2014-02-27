@@ -1,0 +1,33 @@
+<d-content iscroll="false" class="new">
+
+
+	
+	<h1>{{meal.name}}</h1>
+
+	<a class="button" ng-click="save()">save</a>
+
+	<div class="grid healthy-or-not">
+		<h2>type</h2>
+		<div class="col-1-2">
+			<a class="healthy" ng-class="{selected : meal.healthy}" ng-click="meal.healthy = true">HEALTHY</a>
+		</div>
+		<div class="col-1-2">
+			<a class="not-healthy" ng-class="{selected : !meal.healthy}" ng-click="meal.healthy = false">NOT HEALTHY</a>
+		</div>
+	</div>
+
+	<div class="grid macro">
+		<h2>macro</h2>
+		<div class="col-1-3">
+			<a class="protein" ng-class="{selected : meal.macro.protein}" ng-click="meal.macro.protein = !meal.macro.protein">PROTEIN</a>
+		</div>
+		<div class="col-1-3">
+			<a class="carbs" ng-class="{selected : meal.macro.carbs}" ng-click="meal.macro.carbs = !meal.macro.carbs">CARBS</a>
+		</div>
+		<div class="col-1-3">
+			<a class="fat" ng-class="{selected : meal.macro.fat}" ng-click="meal.macro.fat = !meal.macro.fat">FAT</a>
+		</div>
+
+	</div>
+
+</d-content>

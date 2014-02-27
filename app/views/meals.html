@@ -1,0 +1,13 @@
+<d-content iscroll="false">
+
+	<a class="button" ng-click="goTo('start')">back</a>
+	
+	<input type="text" autofocus ng-model="meal.name"/>
+
+	<a class="button" ng-click="new(meal.name)" ng-show="(meals|filter:meal.name).length <= 0 && meal.name">new</a>
+
+	<ul class="list">
+		<li ng-repeat="meal in meals | filter:meal.name" ng-click="eat(meal)">{{meal.name}}</li>
+	<ul>
+
+</d-content>

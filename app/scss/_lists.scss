@@ -1,0 +1,12 @@
+.list{
+
+	li{
+		padding:$padding * 2;
+		text-transform:uppercase;
+		&.ng-click-active{
+			background:white;
+			color:$flat-blue-4;
+		}
+	}
+
+}

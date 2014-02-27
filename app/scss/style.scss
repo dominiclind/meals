@@ -1,0 +1,39 @@
+@import "_colors.scss";
+@import "_vars.scss";
+@import "_mini_reset.scss";
+@import "_grid.scss";
+
+// include fonts
+@import "_fontface.scss";
+// set fonts
+@import "_fonts.scss";
+// icons
+@import "_entypo.scss";
+
+
+// lists
+@import "_lists.scss";
+
+@import "_anims.scss";
+@import "_directive_content.scss";
+
+
+@import "_ui.scss";
+@import "_inputs.scss";
+
+
+// views
+@import "_view-start.scss";
+@import "_view-new.scss";
+
+/* Put your css in here */
+
+html{
+	background:$dark_background-color;
+}
+body{
+	background:$background-color;
+	color:white;
+	position:relative;
+	overflow:hidden;
+}

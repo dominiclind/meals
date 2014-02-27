@@ -1,0 +1,46 @@
+.new{
+
+
+	h1{
+		font-size:18px;
+	}
+
+	h2{
+		font-size:14px;
+	}
+
+	h1, .healthy-or-not h2, .macro h2{
+		margin:$margin;
+		text-align:center;
+		text-transform:uppercase;
+	}
+
+	.healthy-or-not{
+
+		a{
+			display:block;
+			width:100%;
+			text-align:center;
+			padding:$padding * 2 0;
+		}
+		a.selected{
+			background:white;
+			color:$flat-blue-4;
+		}
+	}
+
+	.macro{
+
+		a{
+			display:block;
+			width:100%;
+			text-align:center;
+			padding:$padding * 2 0;
+		}
+
+		a.selected{
+			background:white;
+			color:$flat-blue-4;
+		}
+	}
+}

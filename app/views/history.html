@@ -1,0 +1,27 @@
+<d-content class="start">
+
+	<a class="button" ng-click="goTo('start')">back</a>
+
+	<div class="grid">
+		<h1 class="col-1-1">HISTORY</h1>
+	</div>
+
+
+	<ul class="list">
+		<li ng-repeat="(key,value) in history" ng-if="!isToday(key)">
+			{{key}}
+		</li>
+	</ul>
+
+
+
+	<d-swiper swiper-id="'history-slider'">
+      
+		<d-swiper-slide ng-repeat="(key,value) in history">
+			{{value}}		
+		</d-swiper-slide>
+
+    </d-swiper>
+
+
+</d-content>
