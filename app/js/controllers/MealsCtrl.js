@@ -1,16 +1,24 @@
-app.controller('MealsCtrl', function($scope, $state, Storage) {
+app.controller('MealsCtrl', function($scope, $state, Storage, Header) {
+		
+	Header.back(true, function(){
+		$state.go('start');
+	});
+
+	Header.buttons([
+		{
+			class : 'entypo plus b-right',
+			action : function(){
+				$state.go('new');
+			}	
+		}
+	]);
 	
+
 	$scope.meals = Storage.getAllMeals();
-
-
 	//public
 
 	$scope.eat = function (meal) {
-		$state.go('eat', {id : meal.id})
-	}
-
-	$scope.new = function(mealName){
-		$state.go('new', {name : mealName});
+		$state.go('meal', {id : meal.id})
 	}
 
 });

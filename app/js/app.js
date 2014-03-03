@@ -1,18 +1,24 @@
 var app = angular.module('plunker', ['ui.router','dContentDirectives','dSwiperDirectives','SafeApply', 'ngStorage', 'ngTouch','ngAnimate','swipe']);
 
-app.run(function($rootScope, Notification, Statusbar){
+app.run(function($rootScope, Storage, Notification, Statusbar){
 	console.log("application run");
 
     Notification.add();
 
-    Statusbar.hide();
+    Statusbar.hide(); 
+
+    $rootScope.state = Storage.getState();
 
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         $rootScope.showMenu = false;
-        console.log(event);
-        console.log(toState);
-        $rootScope.currentState = toState.name;
+        $rootScope.state.previousState = fromState;
+        $rootScope.state.previousStateParams = fromParams;
+        
+        $rootScope.state.currentState = toState;
+        $rootScope.state.currentStateParams = toParams;
+
+        console.log($rootScope.state);
 
     })
 });
@@ -32,10 +38,15 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'MealsCtrl',
             templateUrl: 'views/meals.html',
         })
-        .state('eat', {
-            url: '/eat/:id',
-            controller: 'EatCtrl',
-            templateUrl: 'views/eat.html',
+        .state('meal', {
+            url: '/meal/:id',
+            controller: 'MealCtrl',
+            templateUrl: 'views/meal.html',
+        })
+        .state('meal/edit', {
+            url: '/meal/:id/edit',
+            controller: 'EditCtrl',
+            templateUrl: 'views/edit.html',
         })
         .state('new', {
             url: '/new/:name',

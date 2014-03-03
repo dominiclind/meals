@@ -1,0 +1,42 @@
+.header{
+	position: fixed;
+	height: 50px;
+	z-index: 100;
+	width: 100%;
+	background: $background-color;
+
+	.btns a{
+		position: absolute;
+		top: 0;
+		font-size: 70px;
+		padding: 25px 10px;
+		text-align: center;
+		width: 62px;
+
+
+		&.b-right{
+			right: 0;
+		}
+		&.b-left{
+			left:0;
+		}
+
+
+		&.ng-click-active{
+			background:white;
+			color:$flat-blue-4;
+		}
+	}
+
+
+	.logo{
+		width: 40px;
+		margin: 0 auto;
+		display: block;
+		position: relative;
+		padding: 5px;
+	}
+
+		
+
+}

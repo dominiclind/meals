@@ -1,24 +1,21 @@
-app.controller('HistoryCtrl', function($scope, Storage) {
+app.controller('HistoryCtrl', function($scope, Storage, Date, Header) {
+	
+	Header.back(false);
+
 
 	$scope.history = Storage.getHistory();
 
-	console.log($scope.history);
+	$scope.viewHistory = {};
+	for(var key in $scope.history){
+		if(key !== Date.today){
+			$scope.viewHistory[key] = $scope.history[key];
+		};
+	}
+
+	$scope.swiperOptions = {
+		initialSlide :  Object.keys($scope.viewHistory).length-1
+	}
 
 	// public
-
-	$scope.isToday = function(hdate){
-		var today = new Date();
-		var dd = today.getDate(); 
-		var mm = today.getMonth()+1; 
-		var yyyy = today.getFullYear();
-
-		var date = '' + yyyy + mm + dd;
-
-		if(hdate == date){
-			return true
-		}else{
-			return false;
-		}
-	}
 
 });

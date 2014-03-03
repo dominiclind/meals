@@ -2,9 +2,7 @@ app.directive('dEdgeSwipe', ['$parse', 'swipe', function($parse, swipe) {
 
     var validSwipe = function(distX,distY){
         var d = (endDate-startDate); // difference in milliseconds
-       
-        console.log(d);
-        console.log(swipeStartX);
+
         if(d < swipeMaxTime && startX  < swipeStartX){
             if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
                 var swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe

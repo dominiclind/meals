@@ -7,11 +7,13 @@ swiperNav.directive('dSwiper', function($rootScope, $window, Storage){
 	replace : true,
 	templateUrl : 'partials/swiper/swiper-template.html',
 	scope : {
-	  fullscreen : '=swiperFullscreen',
-	  id : '=swiperId'
+	  id : '=dSwiperId',
+	  options : '=dSwiperOptions'
 	},
 	link : function(scope, element, attrs){
 
+
+	console.log(scope.options);
 
 	  // if swiper fullscreen
 	  if(scope.fullscreen){
