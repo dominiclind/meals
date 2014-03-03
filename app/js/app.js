@@ -1,4 +1,4 @@
-var app = angular.module('plunker', ['ui.router','dContentDirectives','dSwiperDirectives','SafeApply', 'ngStorage', 'ngTouch','ngAnimate','swipe']);
+var app = angular.module('plunker', ['ui.router','dContentDirectives','dSwiperDirectives','SafeApply', 'ngStorage','ngTouch','ngAnimate','swipe']);
 
 app.run(function($rootScope, Storage, Notification, Statusbar){
 	console.log("application run");

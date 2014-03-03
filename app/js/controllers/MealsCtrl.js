@@ -21,4 +21,8 @@ app.controller('MealsCtrl', function($scope, $state, Storage, Header) {
 		$state.go('meal', {id : meal.id})
 	}
 
+	$scope.new = function () {
+		$state.go('new');
+	}
+
 });

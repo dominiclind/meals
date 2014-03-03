@@ -40,10 +40,12 @@ app.factory('Storage', function($localStorage, Date) {
 		},
 		getTodaysMeals : function(){
 			var history = this.getHistory();
+			var tHistory = history[Date.today()] || [];
+			
 			var today = [];
 
-			for(var i = 0; i < history[Date.today()].length; i++){	
-				var m = history[Date.today()][i];
+			for(var i = 0; i < tHistory.length; i++){	
+				var m = tHistory[i];
 
 				if(this.getMeal(m.id)){
 					today.push(this.getMeal(m.id));
