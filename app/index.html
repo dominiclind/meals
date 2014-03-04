@@ -8,9 +8,11 @@
 	</head>
 	
 	<body>
-		<div class="main-wrapper" ng-class="{ open : $root.showMenu}" ng-controller="MainCtrl" d-resize-to-window d-edge-swipe right-swipe="$root.showMenu = true;" left-swipe="$root.showMenu = false;">
+		<div class="main-wrapper" ng-class="{ open : $root.showMenu, header_showing : $root.showHeader}" ng-controller="MainCtrl" d-resize-to-window d-edge-swipe right-swipe="$root.showMenu = true;" left-swipe="$root.showMenu = false;">
 			
 			<ng-include src="'partials/menu.html'"></ng-include>
+
+			<ng-include src="'partials/header.html'"></ng-include>
 
 			<div class="view">
 				<div class="close-menu-btn" ng-click="$root.showMenu = false"></div>

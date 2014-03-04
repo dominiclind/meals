@@ -15,6 +15,7 @@ app.directive('dResizeToWindow', function($window, $rootScope){
 
 			console.log('asdasdasd');
 
+			/*
 			angular.element($window).bind('resize', function(){
 				console.log("hej");
 				if(this.resizeTO) clearTimeout(this.resizeTO);
@@ -23,6 +24,7 @@ app.directive('dResizeToWindow', function($window, $rootScope){
 		        }, 500);
 
 			})
+			*/
 
 
 		}

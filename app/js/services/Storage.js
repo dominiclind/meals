@@ -1,11 +1,16 @@
-app.factory('Storage', function($localStorage) {
+app.factory('Storage', function($localStorage, Date) {
 
 	var DEFAULT = {
 		meals : [],
-		history : {}
+		history : {},
+		state : {}
 	};
 
 	return {
+		getState : function(){
+			return $localStorage.$default(DEFAULT).state;
+		},
+
 		getAllMeals : function() {
 			return $localStorage.$default(DEFAULT).meals;
 		},
@@ -34,32 +39,29 @@ app.factory('Storage', function($localStorage) {
 			return $localStorage.$default(DEFAULT).history;
 		},
 		getTodaysMeals : function(){
-			var today = new Date();
-			var dd = today.getDate(); 
-			var mm = today.getMonth()+1; 
-			var yyyy = today.getFullYear();
-
-			var date = '' + yyyy + mm + dd;
-			
 			var history = this.getHistory();
+			var tHistory = history[Date.today()] || [];
+			
+			var today = [];
 
-			return history[date] || [];
+			for(var i = 0; i < tHistory.length; i++){	
+				var m = tHistory[i];
+
+				if(this.getMeal(m.id)){
+					today.push(this.getMeal(m.id));
+				}
+			}
+
+			return today;
 		},
 		eatMeal : function(meal) {
 			var history = this.getHistory();
 
-			var today = new Date();
-			var dd = today.getDate(); 
-			var mm = today.getMonth()+1; 
-			var yyyy = today.getFullYear();
-
-			var date = '' + yyyy + mm + dd;
-
-			if(history[date] == undefined){
-				history[date] = [];
+			if(history[Date.today()] == undefined){
+				history[Date.today()] = [];
 			}
 			
-			history[date].push(meal);
+			history[Date.today()].push({ id : meal.id, eat_date : meal.eat_date });
 
 		},
 		getStats : function(){
@@ -82,7 +84,7 @@ app.factory('Storage', function($localStorage) {
 					stats.nonHealthy++;
 				}
 
-				if(meal.name == 'protein' || meal.name == 'protein shake'){
+				if(meal.name.indexOf('protein') > -1){
 					stats.proteinShakes++;
 				}
 

@@ -1,5 +1,5 @@
 // main menu
-.view{
+.view, .header{
 	-webkit-transition:-webkit-transform 250ms ease;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .open {
-	.view{
+	.view, .header{
 		-webkit-transform:translate3d(20%,0,0);
 	}
 	.menu{

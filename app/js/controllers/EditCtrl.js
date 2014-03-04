@@ -1,6 +1,10 @@
-app.controller('EatCtrl', function($scope, $stateParams, $state, Storage) {
+app.controller('EditCtrl', function($scope, $rootScope, $stateParams, $state, Storage, Header) {
+	
+	Header.back(true, function(){
+		$state.go('meal',{ id : $stateParams.id });
+	});
 
-	console.log($stateParams);
+	Header.buttons([]);
 
 	$scope.meal = Storage.getMeal($stateParams.id);
 

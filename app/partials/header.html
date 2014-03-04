@@ -1,0 +1,12 @@
+<div class="header" ng-if="$root.showHeader" ng-controller="HeaderCtrl">
+
+	<img class="logo" src="img/carrot.png" />
+
+	<div class="btns">
+
+		<a ng-if="$root.showBackBtn" ng-click="$root.backFunction()" class="entypo b-left chevron-left"></a>
+		<a ng-repeat="btn in $root.buttons" ng-click="btn.action()" ng-class="btn.class"></a>
+	</div>
+
+
+</div>
