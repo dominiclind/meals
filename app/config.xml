@@ -14,5 +14,6 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="KeyboardShrinksView" value="false" />
+    <preference name="EnableViewportScale" value="true" />
 
 </widget>

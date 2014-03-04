@@ -1,11 +1,14 @@
-app.directive('dEdgeSwipe', ['$parse', 'swipe', function($parse, swipe) {
+app.directive('dEdgeSwipe', ['$parse', 'swipe', function($parse, swipe, $window) {
 
     var validSwipe = function(distX,distY){
-        var d = (endDate-startDate); // difference in milliseconds
-       
-        console.log(d);
-        console.log(swipeStartX);
-        if(d < swipeMaxTime && startX  < swipeStartX){
+
+        console.log("startX" + startX);
+
+
+        console.log("swipe start left" + swipeStartLeft);
+        console.log("swipe start right" + swipeStartRight);
+        
+        if(startX < swipeStartLeft || startX > swipeStartRight){
             if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
                 var swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
                 return swipedir;
@@ -24,13 +27,19 @@ app.directive('dEdgeSwipe', ['$parse', 'swipe', function($parse, swipe) {
     distY,
     threshold = 60,
     restraint = 100,
-    swipeMaxTime = 200,
-    swipeStartX = 40;
+    swipeStartThreshold = 40,
+    swiped = false;
 
     return function(scope, element, attrs) {
 
         var leftSwipeFunction = $parse(attrs.leftSwipe),
             rightSwipeFunction = $parse(attrs.rightSwipe);
+
+
+        window.setTimeout(function(){
+            swipeStartRight = 0,
+            swipeStartLeft  = swipeStartThreshold;
+        },0);
 
         swipe.bind(element,{
             start:function(coords,e){
@@ -39,26 +48,59 @@ app.directive('dEdgeSwipe', ['$parse', 'swipe', function($parse, swipe) {
                 startX = coords.x;
                 startY = coords.y;
             },
-            end: function(coords){
+            move : function(coords){
                 distX = coords.x - startX;
                 distY = coords.y - startY;
-                endDate = new Date();
 
                 if(!preventSwipe){
                     switch(validSwipe(distX, distY)){
                         case 'right':
-                            scope.$apply(function () {
-                                rightSwipeFunction(scope);
-                            });
+                            if(!swiped){
+                                scope.$apply(function () {
+                                    rightSwipeFunction(scope);
+                                });
+                                swiped = true;
+                            }
                         break;
 
                         case 'left':
-                            scope.$apply(function () {
-                                leftSwipeFunction(scope);
-                            });
+                            if(!swiped){
+                                scope.$apply(function () {
+                                    leftSwipeFunction(scope);
+                                });
+                                swiped = true;
+                            }
                         break; 
                     }
                 }
+            },
+            end: function(coords){
+                distX = coords.x - startX;
+                distY = coords.y - startY;
+
+                if(!preventSwipe){
+                    switch(validSwipe(distX, distY)){
+                        case 'right':
+                            if(!swiped){
+                                scope.$apply(function () {
+                                    rightSwipeFunction(scope);
+                                });
+                                swiped = true;
+                            }
+                        break;
+
+                        case 'left':
+                            if(!swiped){
+                                scope.$apply(function () {
+                                    leftSwipeFunction(scope);
+                                });
+                                swiped = true;
+                            }
+                        break; 
+                    }
+                }
+
+                swiped = false;
 
             }
         });
