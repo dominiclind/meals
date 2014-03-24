@@ -7,6 +7,22 @@
 			background:white;
 			color:$flat-blue-4;
 		}
+
+		.custom-toggle{
+			float: right;
+			position: relative;
+			top: -5px;
+		}
 	}
 
+	.header-small{
+		font-size:14px;
+		text-transform:uppercase;
+		padding:$margin;
+	}
+
+}
+
+.list .sub-list{
+	background:rgba(0,0,0,.3);
 }

@@ -3,6 +3,7 @@
 @import "_mini_reset.scss";
 @import "_grid.scss";
 @import "_swiper.scss";
+@import "_mixins.scss";
 
 // include fonts
 @import "_fontface.scss";
@@ -21,6 +22,8 @@
 
 @import "_anims.scss";
 @import "_directive_content.scss";
+@import "_directive_custom-toggle.scss";
+@import "_directive_swipe-to-reveal.scss";
 
 
 @import "_ui.scss";
@@ -33,7 +36,7 @@
 
 /* Put your css in here */
 body{
-	background:$background-color;
+	background:black;
 	color:white;
 	overflow:hidden;	
 	height:100%;
@@ -45,24 +48,18 @@ body{
 	position:relative;
 	overflow:hidden;
 
-	.view, .close-menu-btn{
-
+	.view{
 		position:absolute;
 		width:100%;
 		top:0;
 		bottom:0;
 		display:block;
 		overflow: hidden;
+		background:$flat-blue-3;
+	}
+
+	.m.view{
+		z-index:10;
 	}
 }
 
-
-
-//
-// custom
-//
-
-
-.header_showing .content{
-	padding-top:50px;
-}

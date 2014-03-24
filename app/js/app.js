@@ -1,9 +1,7 @@
-var app = angular.module('plunker', ['ui.router','dContentDirectives','dSwiperDirectives','SafeApply', 'ngStorage','ngTouch','ngAnimate','swipe']);
+var app = angular.module('plunker', ['ui.router','dContentDirectives','dSwiperDirectives','SafeApply', 'ngStorage', 'ngTouch','ngAnimate','swipe', 'dSwipeToReveal']);
 
 app.run(function($rootScope, Storage, Notification, Statusbar){
 	console.log("application run");
-
-    Notification.add();
 
     Statusbar.hide(); 
 
@@ -11,15 +9,15 @@ app.run(function($rootScope, Storage, Notification, Statusbar){
 
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-        $rootScope.showMenu = false;
+
+        $rootScope.allowMenuScroll = true;
+        $rootScope.menuShowing = false;
+
         $rootScope.state.previousState = fromState;
         $rootScope.state.previousStateParams = fromParams;
         
         $rootScope.state.currentState = toState;
         $rootScope.state.currentStateParams = toParams;
-
-        console.log($rootScope.state);
-
     })
 });
 
@@ -57,5 +55,15 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             url: '/history',
             controller: 'HistoryCtrl',
             templateUrl: 'views/history.html',
+        })
+        .state('settings', {
+            url: '/settings',
+            controller: 'SettingsCtrl',
+            templateUrl: 'views/settings.html',
+        })
+        .state('notifications', {
+            url: '/notifications',
+            controller: 'NotificationsCtrl',
+            templateUrl: 'views/notifications.html',
         })
 });

@@ -16,46 +16,40 @@ app.factory('Notification', function($rootScope, $state, Cordova) {
     */
 
     //callbacks
+    Cordova.ready().then(function(){
+        window.plugin.notification.local.onclick = function (id, state, json) {
+            console.log("on local notification click");
+
+            switch(JSON.parse(json).goto){
+
+                case 'history':
+                    console.log("goto history");
+
+                    $state.go('history'); 
+
+
+
+                break;
+            }
+        }
+    })
 
     return {
 
-        add : function(){
+        add : function(notification){
             Cordova.ready().then(function(){
-                var now      = new Date(),
-                    midnight = new Date(now.setHours(0,0,0,0)),
-                    eightam  = new Date(midnight.setHours(8));
 
+                window.plugin.notification.local.add(notification);
 
-                window.plugin.notification.local.add({
-                    id:      1, // is converted to a string
-                    message: "What did you eat yesterday? Check it out!",
-                    json: JSON.stringify({ goto : 'history'}),
-                    repeat:  'daily',
-                    date:    eightam
-                });
+            });
+        },
+        cancelAll : function() {
+            Cordova.ready().then(function(){
 
-
-                // callbacks
-                window.plugin.notification.local.onclick = function (id, state, json) {
-                    console.log("on local notification click");
-
-                    switch(JSON.parse(json).goto){
-
-                        case 'history':
-                            console.log("goto history");
-
-                            $state.go('history'); 
-
-
-
-                        break;
-                    }
-                }
-
-
+                window.plugin.notification.local.cancelAll();
 
             });
         }
-      
+        
     }
 });

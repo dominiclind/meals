@@ -8,17 +8,31 @@
 	</head>
 	
 	<body>
-		<div class="main-wrapper" ng-class="{ open : $root.showMenu, header_showing : $root.showHeader}" ng-controller="MainCtrl" d-resize-to-window d-edge-swipe right-swipe="$root.showMenu = true;" left-swipe="$root.showMenu = false;">
+		<!--div class="main-wrapper" ng-class="{ open : $root.showMenu, header_showing : $root.showHeader}" ng-controller="MainCtrl" d-resize-to-window d-edge-swipe right-swipe="$root.showMenu = true;" left-swipe="$root.showMenu = false;"---->
+			
+
+
+			<!--ng-include src="'partials/header.html'"></ng-include-->
+
+		<div class="main-wrapper" ng-controller="MainCtrl" d-resize-to-window>
 			
 			<ng-include src="'partials/menu.html'"></ng-include>
 
-			<ng-include src="'partials/header.html'"></ng-include>
-
-			<div class="view">
-				<div class="close-menu-btn" ng-click="$root.showMenu = false"></div>
-				<div ui-view></div>
+			<div class="view m" menu-toggle="$root.showMenu" d-swipe-menu>
+				<div class="view" ui-view>
+					<!--div class="close-menu-btn" ng-click="$root.showMenu = false"></div-->
+					
+				</div>
 			</div>
 
+		</div>
+
+		<div style="position:fixed; bottom:20px; left:0;">
+			<p>rootscope.menushowing = {{$root.menuShowing}}</p>
+			<p>rootscope.allowmenuscroll = {{$root.allowMenuScroll}}</p>
+			<p>allow swipe to start of reveal = {{$root.swipers['meals'].activeIndex == 0}}</p>
+
+			<p>foregroundmoving = {{$root.foregroundMoving}}</p>
 		</div>
 	</body>
 

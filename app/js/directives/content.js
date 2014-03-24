@@ -1,6 +1,6 @@
 var contentDirectives = angular.module('dContentDirectives', []);
 
-contentDirectives.directive('dContent', function($window, swipe){
+contentDirectives.directive('dContent', function($window,$timeout, swipe){
 
 	var GLOBAL_OPTIONS = {
 		HWCompositing : true,
@@ -14,7 +14,8 @@ contentDirectives.directive('dContent', function($window, swipe){
 		replace: true,
 		templateUrl : 'partials/content/content.html',
 		scope    : {
-			useiscroll : '=iscroll'
+			useiscroll : '=iscroll',
+			overflow   : "=overflow"
 		},
 		controller : function($scope, $element, $attrs){
 			var _this = this;
@@ -24,10 +25,22 @@ contentDirectives.directive('dContent', function($window, swipe){
 			if($scope.useiscroll == true){
 				_this.iscroll = new IScroll($element[0], GLOBAL_OPTIONS);
 				$element.addClass('iscroll');
+
+
+				$scope.$watchCollection(function(){
+					if(angular.isDefined(_this.iscroll)){
+						_this.iscroll.refresh();
+					}
+				});
+			
 			}else{
-				$element.addClass('overflow-native');
+				if($scope.overflow == 'hidden'){
+				}else{
+					$element.addClass('overflow-native');	
+				}
 				_this.element = $element;
 			}
+
 		}
 	}
 });

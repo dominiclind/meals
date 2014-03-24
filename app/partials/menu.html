@@ -1,5 +1,8 @@
 <div class="menu" ng-controller="MenuCtrl">
+	
 	<ul>
-		<li ng-repeat="item in items" ng-class="{'current' : $root.currentState == item.name}"ng-click="goTo(item.name)"><span class="{{item.icon}}"></span></li>
+		<li ng-repeat="item in items" ng-class="{'current' : $root.state.currentState.name == item.name}" ng-click="goTo(item.name)">
+			<span class="{{item.icon}}"></span>
+		</li>
 	</ul>
 </div>

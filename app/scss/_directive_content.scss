@@ -10,16 +10,17 @@
 		padding-bottom:10px;
 	}
 	&.overflow-native{
-		overflow-x:hidden;
-		overflow-y: scroll;
+		overflow-x:hidden !important;
+		overflow-y: scroll !important;
 		-webkit-overflow-scrolling: touch;
 		-webkit-backface-visibility:hidden;
 		-webkit-transform:translate3d(0,0,0);
 	}
-
+	
+	/*
 	.overflow-content{
 		min-height:101%;
-	}
+	}*/
 }
 
 //

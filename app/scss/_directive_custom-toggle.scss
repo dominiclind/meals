@@ -1,0 +1,28 @@
+.custom-toggle{
+	display: inline-block;
+	height: 30px;
+	background: $flat-red-1;
+	width: 60px;
+	position:relative;
+	overflow:hidden;
+	-webkit-transition: background ease 300ms;
+	.toggle{
+		position:absolute;
+		width:90px;
+		.handle{
+			-webkit-transition: all ease 200ms;
+			background:white;
+			height:30px;
+			width:30px;
+			
+
+		}
+	}
+}
+
+.custom-toggle.true{
+	background:$flat-green-1;
+	.handle{
+		-webkit-transform:translate3d(30px,0,0);
+	}
+}

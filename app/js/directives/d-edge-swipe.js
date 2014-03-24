@@ -38,6 +38,8 @@ app.directive('dEdgeSwipe', ['$parse', 'swipe', function($parse, swipe, $window)
             start:function(coords,e){
                 startDate = new Date();
                 preventSwipe = e.target.classList.contains('no-swipe');
+
+                console.log(preventSwipe);
                 startX = coords.x;
                 startY = coords.y;
             },

@@ -1,7 +1,13 @@
+.no-transition{
+	-webkit-transition: none !important;
+}
+/*
+
 // main menu
 .view, .header{
 	-webkit-transition:-webkit-transform 250ms ease;
 }
+
 
 .menu{
 	-webkit-transform:translate3d(-100%,0,0);
@@ -24,4 +30,32 @@
 		-webkit-transform:translate3d(0,0,0);
 		}
 	}
+}
+*/
+
+
+
+
+// view transitions
+[ui-view].ng-enter, [ui-view].ng-leave {
+	-webkit-transition:all $viewTransitionDuration ease-in-out;
+	-moz-transition:all $viewTransitionDuration ease-in-out;
+	-o-transition:all $viewTransitionDuration ease-in-out;
+	transition:all $viewTransitionDuration ease-in-out;
+}
+
+[ui-view].ng-enter {
+	opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+	opacity: 1;
+}
+
+[ui-view].ng-leave {
+	opacity: 1; 
+}
+
+[ui-view].ng-leave-active {
+	opacity: 0;
 }

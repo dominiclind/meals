@@ -1,27 +1,45 @@
-<d-content class="start main-wrapper">
+<d-swipe-to-reveal>
+	<foreground>
+		<d-content class="start" overflow="'hidden'">
+			<!--a class="button no-swipe" ng-click="goTo('meals')">EAT</a-->
 
-	<a class="button no-swipe" ng-click="goTo('meals')">EAT</a>
+			<div class="grid">
+				<div class="col-1-2 box">
+					<h2>meals today</h2>
+					<p>{{stats.meals}}</p>
+				</div>
 
-	<div class="grid" in-view in-view-class="'visible'" in-view-position="'bottom'" in-view-delay="400">
-		<div class="col-1-2 box">
-			<h2>meals today</h2>
-			<p>{{stats.meals}}</p>
-		</div>
+				<div class="col-1-2 box">
+					<h2>healthy</h2>
+					<p>{{ stats.healthy }}</p>
+				</div>
 
-		<div class="col-1-2 box">
-			<h2>healthy</h2>
-			<p>{{ stats.healthy }}</p>
-		</div>
+				<div class="col-1-2 box">
+					<h2>not healthy</h2>
+					<p>{{ stats.nonHealthy }}</p>
+				</div>
 
-		<div class="col-1-2 box">
-			<h2>not healthy</h2>
-			<p>{{ stats.nonHealthy }}</p>
-		</div>
+				<div class="col-1-2 box">
+					<h2>protein shake</h2>
+					<p>{{ stats.proteinShakes }}</p>
+				</div>
+			</div>
+		</d-content>
+	</foreground>
 
-		<div class="col-1-2 box">
-			<h2>protein shake</h2>
-			<p>{{ stats.proteinShakes }}</p>
-		</div>
-	</div>
+	<background>
+		
+		<d-content class="meal-wrapper" overflow="'hidden'">
 
-</d-content>
+			<d-swiper d-swiper-id="'meals'" d-swiper-fullscreen="true" d-swiper-index="eatSliderIndex" d-swiper-options="swiperOptions">
+				<d-swiper-slide ng-repeat="meal in mealsArr">
+					<div class="meal" ng-click="eat(meal)">
+						{{meal.name}}
+					</div>
+				</d-swiper-slide>
+		    </d-swiper>	
+		</d-content>
+
+	</background>
+
+</d-swipe-to-reveal>

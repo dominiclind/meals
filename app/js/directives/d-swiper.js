@@ -8,7 +8,9 @@ swiperNav.directive('dSwiper', function($rootScope, $window, Storage){
 	templateUrl : 'partials/swiper/swiper-template.html',
 	scope : {
 	  id : '=dSwiperId',
-	  options : '=dSwiperOptions'
+	  options : '=dSwiperOptions',
+	  index : '=dSwiperIndex',
+	  fullscreen : '=dSwiperFullscreen'
 	},
 	link : function(scope, element, attrs){
 
@@ -34,6 +36,7 @@ swiperNav.directive('dSwiper', function($rootScope, $window, Storage){
 		//Your options here:
 		mode:'horizontal',
 		loop: false,
+		initialSlide : scope.index || 0,
 		watchActiveIndex : true,
 		onSwiperCreated : function(swiper){
 		  $rootScope.$safeApply(function(){
@@ -49,7 +52,7 @@ swiperNav.directive('dSwiper', function($rootScope, $window, Storage){
 
 		},
 		onSlideChangeEnd : function(swiper) {
-
+			
 		  $rootScope.$safeApply(function(){
 			$rootScope.$emit('swiper:onSlideChangeEnd', scope.id, swiper);
 		  });

@@ -1,0 +1,10 @@
+.foreground{
+	z-index:12;
+	background:$flat-blue-3;
+	-webkit-transition: all 300ms ease;
+}
+
+.background{
+	z-index:11;
+	background:$flat-blue-4 !important;
+}
