@@ -45,10 +45,7 @@ swipeToReveal.directive('dSwipeToReveal', function($window, $rootScope, $timeout
 				switch(swipedir){
 					case 'left':
 						// show background
-						console.log("show background");
-						if(distX < 0 && Math.abs(distX) > THRESHOLD){
-
-							console.log("ANIMATE THAT FOREGROUND AWAAAAAAYYYY");
+						if(distX < 0 && Math.abs(distX) > THRESHOLD && !$rootScope.menuShowing){
 
 							requestAnimationFrame(function(){
 								foreground.css({
@@ -58,7 +55,6 @@ swipeToReveal.directive('dSwipeToReveal', function($window, $rootScope, $timeout
 							});
 
 							$timeout(function(){
-								console.log("DONT ALLOW THAT MENU SCROLL");
 								$rootScope.allowMenuScroll = false;
 							},time);
 
@@ -71,8 +67,6 @@ swipeToReveal.directive('dSwipeToReveal', function($window, $rootScope, $timeout
 
 					case 'right':
 						// show foreground
-
-						console.log("show foreground");
 						if(distX > 0 && Math.abs(distX) > THRESHOLD && allowSwipe){
 
 							requestAnimationFrame(function(){
@@ -83,7 +77,6 @@ swipeToReveal.directive('dSwipeToReveal', function($window, $rootScope, $timeout
 							});
 
 							$timeout(function(){
-								console.log("allow dat menu scrull");
 								$rootScope.allowMenuScroll = true;
 							},time);
 
@@ -120,9 +113,6 @@ swipeToReveal.directive('dSwipeToReveal', function($window, $rootScope, $timeout
 
 					foreground.addClass('no-transition');
 
-
-					console.log("touched FOREGROUND");
-
 				},
 				move : function(coords,e) {
 					distX = coords.x - startX;
@@ -141,7 +131,7 @@ swipeToReveal.directive('dSwipeToReveal', function($window, $rootScope, $timeout
 						}
 					}	
 					
-					if(swipedir == 'left' && !$rootScope.menuShowing){
+					if(swipedir == 'left' && !$rootScope.menuShowing && !$rootScope.menuMoving){
 						// animate foreground
 						requestAnimationFrame(function(){
 							foreground.css('-webkit-transform', 'translate3d('+distX+'px,0,0)');
@@ -213,7 +203,6 @@ swipeToReveal.directive('background', function(){
 		transclude : true,
 		template : '<div class="view background" ng-transclude></div>',
 		link : function(scope,element,attrs){
-			console.log(element);
 		}
 	}
 });

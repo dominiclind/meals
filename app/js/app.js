@@ -31,26 +31,6 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'StartCtrl',
             templateUrl: 'views/start.html',
         })
-        .state('meals', {
-            url: '/meals',
-            controller: 'MealsCtrl',
-            templateUrl: 'views/meals.html',
-        })
-        .state('meal', {
-            url: '/meal/:id',
-            controller: 'MealCtrl',
-            templateUrl: 'views/meal.html',
-        })
-        .state('meal/edit', {
-            url: '/meal/:id/edit',
-            controller: 'EditCtrl',
-            templateUrl: 'views/edit.html',
-        })
-        .state('new', {
-            url: '/new/:name',
-            controller: 'NewCtrl',
-            templateUrl: 'views/new.html',
-        })
         .state('history', {
             url: '/history',
             controller: 'HistoryCtrl',
@@ -61,9 +41,21 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'SettingsCtrl',
             templateUrl: 'views/settings.html',
         })
-        .state('notifications', {
-            url: '/notifications',
-            controller: 'NotificationsCtrl',
-            templateUrl: 'views/notifications.html',
+            .state('notifications', {
+                url: '/notifications',
+                controller: 'NotificationsCtrl',
+                templateUrl: 'views/notifications.html',
+            })
+            .state('meals', {
+                url: '/meals',
+                controller: 'MealsCtrl',
+                templateUrl: 'views/meals.html',
+            })
+
+
+        .state('new', {
+            url: '/new',
+            controller: 'NewCtrl',
+            templateUrl: 'views/new.html',
         })
 });

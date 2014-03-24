@@ -2,38 +2,22 @@
 	<html ng-app="plunker">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
+		<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
 		<title>meals</title>
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 	
 	<body>
-		<!--div class="main-wrapper" ng-class="{ open : $root.showMenu, header_showing : $root.showHeader}" ng-controller="MainCtrl" d-resize-to-window d-edge-swipe right-swipe="$root.showMenu = true;" left-swipe="$root.showMenu = false;"---->
-			
-
-
-			<!--ng-include src="'partials/header.html'"></ng-include-->
-
 		<div class="main-wrapper" ng-controller="MainCtrl" d-resize-to-window>
 			
 			<ng-include src="'partials/menu.html'"></ng-include>
 
 			<div class="view m" menu-toggle="$root.showMenu" d-swipe-menu>
-				<div class="view" ui-view>
-					<!--div class="close-menu-btn" ng-click="$root.showMenu = false"></div-->
-					
-				</div>
+				<div class="view" ui-view></div>
 			</div>
 
 		</div>
 
-		<div style="position:fixed; bottom:20px; left:0;">
-			<p>rootscope.menushowing = {{$root.menuShowing}}</p>
-			<p>rootscope.allowmenuscroll = {{$root.allowMenuScroll}}</p>
-			<p>allow swipe to start of reveal = {{$root.swipers['meals'].activeIndex == 0}}</p>
-
-			<p>foregroundmoving = {{$root.foregroundMoving}}</p>
-		</div>
 	</body>
 
 	<script src="cordova.js"></script>

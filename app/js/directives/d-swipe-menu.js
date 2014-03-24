@@ -7,7 +7,8 @@ var THRESHOLD = 65,
 	startX,
 	startY,
 	distX,
-	distY;
+	distY,
+	swipedir;
 
 
     var validSwipe = function(){
@@ -27,15 +28,14 @@ var THRESHOLD = 65,
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
-
-			console.log(element);
-
 			$rootScope.$watch('menuShowing', function(menu){
 				if(menu == false){
-					element.css({
-						'-webkit-transition' : 'all 200ms ease',
-						'-webkit-transform' : 'translate3d(0,0,0)'
-					});
+					requestAnimationFrame(function(){
+						element.css({
+							'-webkit-transition' : 'all 200ms ease',
+							'-webkit-transform' : 'translate3d(0,0,0)'
+						});
+					})
 				}
 			});
 			
@@ -46,9 +46,11 @@ var THRESHOLD = 65,
 				element.removeClass('no-transition');
 				endTime = new Date().getTime();
 
+				console.log("swipedir END :::" + swipedir);
+
 				if((endTime - startTime) < SWIPE_TIME || Math.abs(distX) > THRESHOLD){
 
-					if(distX > 0){
+					if(distX > 20 && swipedir == 'right'){
 
 						// SHOW MENU
 						requestAnimationFrame(function(){
@@ -82,6 +84,10 @@ var THRESHOLD = 65,
 				startY = 0,
 				distX = 0;
 				distY = 0;
+
+				scope.$apply(function(){
+					$rootScope.menuMoving = false;
+				})
 			}
 
 
@@ -100,8 +106,7 @@ var THRESHOLD = 65,
 					element.addClass('no-transition');
 
 					($rootScope.allowMenuScroll == true) ? allow = true : allow = false;
-					($rootScope.foregroundMoving == true) ? foregroundMoving = true : foregroundMoving = false;
-
+					
 					console.log("ALLO :: " + allow);
 
 
@@ -112,31 +117,37 @@ var THRESHOLD = 65,
 					var _this = this;
 					distX = coords.x - startX;
 					distY = coords.y - startY;
-					var swipedir = validSwipe();
-					
-					console.log("allow menu scroll :" + allow);
+					swipedir = validSwipe();
 
-					if(allow && !foregroundMoving){
-						if(swipedir == 'right'){
+					if(allow){
+						if(swipedir == 'right' && !$rootScope.menuShowing){
 
 							// REVEAL menu
 							if(distX > 0){
-							
+								
+								// set menu as moving
+								if(swipedir == 'right' || !$rootScope.menuMoving){
+									if(angular.isUndefined($rootScope.menuMoving) || $rootScope.menuMoving == false){
+										scope.$apply(function(){
+											$rootScope.menuMoving = true;
+										})
+									}
+								}	
+
 								if(distX > THRESHOLD){
-									dist = distX - ( 0.5 * (distX - THRESHOLD) );
+									dist = distX - ( 0.6 * (distX - THRESHOLD) );
 								}else{
 									dist = distX;
 								}
 								requestAnimationFrame(function(){
 									element.css('-webkit-transform', 'translate3d('+dist+'px,0,0)');
 								})
-								//element.css('-webkit-transform', 'translate3d('+distX+'px,0,0)');
-
+								
 							}
 
-						}else if(swipedir == 'left'){
+						}else if(swipedir == 'left' && $rootScope.menuShowing){
 							// close menu
-							/*
+							
 							var dist = THRESHOLD - Math.abs(distX);
 							if(dist > 0){
 								// animate foreground
@@ -147,7 +158,7 @@ var THRESHOLD = 65,
 									element.css('-webkit-transform', 'translate3d('+dist+'px,0,0)');
 								})
 							}
-							*/
+							
 						}
 					}
 					

@@ -7,6 +7,10 @@ app.controller('MenuCtrl', function($scope,Storage) {
 			icon : 'entypo list'
 		},
 		{
+			name : 'history',
+			icon : 'entypo calendar'
+		},
+		{
 			name : 'settings',
 			icon : 'entypo cog'
 		}

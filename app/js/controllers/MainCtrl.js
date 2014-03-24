@@ -1,7 +1,5 @@
 app.controller('MainCtrl', function($scope, $state, Header) {
 
-	Header.show();
-
 	//
 	// public
 	//  

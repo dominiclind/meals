@@ -45,11 +45,9 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="KeyboardShrinksView" value="false" />
-    <preference name="EnableViewportScale" value="true" />
     <preference name="StatusBarOverlaysWebView" value="true" />
 </widget>

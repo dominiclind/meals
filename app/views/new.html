@@ -1,5 +1,5 @@
 <d-content>
 	
-	<input in-view in-view-class="'visible'" in-view-position="'bottom'" type="text" d-focus ng-model="meal.name"/>
+	<input in-view in-view-class="'visible'" in-view-position="'bottom'" type="text" d-on-key="'left'" d-on-key-event="logModel()" d-focus d-blur="logModel()" ng-model="meal.name"/>
 
 </d-content>
