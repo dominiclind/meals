@@ -30,7 +30,6 @@ var THRESHOLD = 65,
 
 			console.log(element);
 
-			
 			$rootScope.$watch('menuShowing', function(menu){
 				if(menu == false){
 					element.css({

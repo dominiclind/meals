@@ -23,16 +23,6 @@
 				background:white;
 				color:$flat-blue-4;
 			}
-			&.current::before{
-				content:'';
-				display:block;
-				right: 0px;
-				position: absolute;
-				top: 21px;
-
-				@include triangle('left', $flat-blue-3, 10px);
-
-			}
 		}
 		
 	}
